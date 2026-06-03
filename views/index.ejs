@@ -3,12 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>index</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 1200px;
+            margin: auto;
+        }
+        .grid-container {
+            display: grid;
+             grid-template-columns: repeat(3, 1fr);
+             gap: 8px;
+        }
+        .card-info {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
-
-    <h1>Hello, World!</h1>
-    <p>Welcome to my first web page.</p>
-
+    <div class="container">
+        <div class="grid-container">
+            <% products.forEach(product => { %>
+            <a href="/products/<%= product.id %>">
+            <div class="card-info">
+                <h3><%= product.name %></h3>
+                <p><%= product.price %></p>
+                <p><%= product.category %></p>
+            </div>
+            </a>
+            <% }) %>
+        </div>
+    </div>
 </body>
 </html>

@@ -16,13 +16,10 @@ app.use(session({
 }))
 
 const authRoutes = require('./routes/auth')
+const productsRoutes = require('./routes/products')
 app.use('/', authRoutes)
+app.use('/', productsRoutes)
 
-
-app.get('/', (req, res) => {
-  console.log(req.session)
-  res.render('index')
-});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
