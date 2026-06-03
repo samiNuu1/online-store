@@ -9,10 +9,14 @@
     </style>
 </head>
 <body>
+    <a href="/cart">VIEW CART</a>
         <%= product.name %>
         <%= product.price %>
         <%= product.category %>
         <%= product.image_url %>
+        <form action="/products/<%= product.id %>/add-to-cart" method="POST">
+        <button type="submit">Add to Cart</button>
+        </form>
         <a href="/">Homepage</a>
 </body>
 </html>

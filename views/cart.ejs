@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+</head>
+<body>
+    <% cart.forEach(CartItem => { %>
+    <p><%= CartItem.name %></p>
+    <p><%= CartItem.price %></p>
+    <p><%= CartItem.quantity %></p>
+    <% }) %>
+</body>
+</html>
