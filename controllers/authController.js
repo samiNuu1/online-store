@@ -33,3 +33,38 @@ exports.postRegister = async (req, res) => {
      return res.status(500).json({ error: 'Server error' })
   }
 }
+
+
+exports.getLogin = (req, res) => {
+  res.render('login')
+}
+
+exports.postLogin = async (req, res) => {
+  try{
+    const {email, password} = req.body
+    if (!email || !password){
+      return res.status(400).json({ error: "All field are required" });
+    }
+
+    const result = await db.query('SELECT id, password_hash FROM users WHERE email = $1', [email])
+    if (result.rows.length === 0){
+      return res.status(400).json({ error: "user not found" });
+    }
+
+    const user = result.rows[0]
+
+    const isMatch = await bcrypt.compare(password, user.password_hash)
+    if (!isMatch){
+      return res.status(400).json({ error: "Invalid email or password." });
+    }
+
+    req.session.userId = user.id
+
+    res.redirect('/')
+
+
+  } catch (error){
+    console.error(error)
+    return res.status(500).json({ error: 'Server error' })
+  }
+}
