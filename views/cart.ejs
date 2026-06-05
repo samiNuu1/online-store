@@ -11,5 +11,9 @@
     <p><%= CartItem.price %></p>
     <p><%= CartItem.quantity %></p>
     <% }) %>
+    <p>Total: $<%= total %></p>
+    <form action="/checkout" method="POST">
+  <button type="submit">Checkout</button>
+</form>
 </body>
 </html>

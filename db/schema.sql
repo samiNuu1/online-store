@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS order_items (
 	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 	order_id UUID NOT NULL REFERENCES orders(id),
 	product_id UUID NOT NULL REFERENCES products(id),
+	name TEXT NOT NULL,
 	quantity INTEGER NOT NULL,
 	price DECIMAL(10,2) NOT NULL
 );

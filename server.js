@@ -18,9 +18,11 @@ app.use(session({
 const authRoutes = require('./routes/auth')
 const productsRoutes = require('./routes/products')
 const cartRoutes = require('./routes/cart')
+const orderRoutes = require('./routes/orders')
 app.use('/', authRoutes)
 app.use('/', productsRoutes)
-app.use('/', cartRoutes)
+app.use('/', cartRoutes) // cart/ etc..
+app.use('/', orderRoutes) // later better use order/ etc..
 
 
 app.listen(port, () => {
