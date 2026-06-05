@@ -39,3 +39,14 @@ exports.getOrder = async (req, res) => {
 		return res.status(500).json({ error: 'Server error' })
 	}
 }
+
+exports.getOrders = async (req, res) => {
+	try{
+		const ordersResult = await db.query('SELECT * FROM orders WHERE user_id = $1 ORDER BY created_at DESC', [req.session.userId])
+		const orders = ordersResult.rows
+		res.render('orders', { orders })
+	} catch (error){
+		console.error(error)
+		return res.status(500).json({ error: 'Server error' })
+	}
+}

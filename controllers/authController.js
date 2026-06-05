@@ -68,3 +68,9 @@ exports.postLogin = async (req, res) => {
     return res.status(500).json({ error: 'Server error' })
   }
 }
+
+
+exports.postLogout = (req, res) => {
+  req.session.destroy()
+  res.redirect('/login')
+}
