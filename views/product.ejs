@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= product.name %></title>
-    <style>
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= product.name %></title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <a href="/cart">VIEW CART</a>
-        <%= product.name %>
-        <%= product.price %>
-        <%= product.category %>
-        <%= product.image_url %>
+
+  <%- include('partials/navbar') %>
+
+  <div class="container">
+    <div class="product-layout">
+
+      <div class="product-image">
+        <img src="<%= product.image_url %>" alt="<%= product.name %>">
+      </div>
+
+      <div class="product-info">
+        <h1><%= product.name %></h1>
+        <p>$<%= product.price %></p>
+        <p><%= product.category %></p>
+
+        <!-- Add to cart submits a POST request with the product ID in the URL -->
         <form action="/products/<%= product.id %>/add-to-cart" method="POST">
-        <button type="submit">Add to Cart</button>
+          <button type="submit" class="cart-btn">Add to Cart</button>
         </form>
-        <a href="/">Homepage</a>
+      </div>
+
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
 </body>
 </html>

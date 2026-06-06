@@ -1,45 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
-    <style>
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 1200px;
-            margin: auto;
-        }
-        .grid-container {
-            display: grid;
-             grid-template-columns: repeat(3, 1fr);
-             gap: 8px;
-        }
-        .card-info {
-            display: flex;
-            flex-direction: column;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <form action="/logout" method="POST">
-        <button type="submit">Logout</button>
-    </form>
-    <a href="/cart">VIEW CART</a>
-    <div class="container">
-        <div class="grid-container">
-            <% products.forEach(product => { %>
-            <a href="/products/<%= product.id %>">
-            <div class="card-info">
-                <h3><%= product.name %></h3>
-                <p><%= product.price %></p>
-                <p><%= product.category %></p>
+
+  <%- include('partials/navbar') %>
+
+  <div class="container">
+    <div class="grid-container">
+
+      <% products.forEach(product => { %>
+        <a href="/products/<%= product.id %>">
+          <div class="card">
+            <div class="card-image">
+              <img src="<%= product.image_url %>" alt="<%= product.name %>">
             </div>
-            </a>
-            <% }) %>
-        </div>
+            <div class="card-info">
+              <h3 class="card-title"><%= product.name %></h3>
+              <p class="card-price">$<%= product.price %></p>
+              <p class="card-catg"><%= product.category %></p>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+
     </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
 </body>
 </html>

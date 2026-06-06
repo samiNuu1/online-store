@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Histroy</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-        <% orders.forEach(order => { %>
-        <a href="/order/<%= order.id %>"><p><%= order.id %></p></a>
-            <p><%= order.status %></p>
-            <p><%= order.created_at %></p>
-        <% }) %>
+
+  <%- include('partials/navbar') %>
+
+  <div class="container">
+
+    <!-- Loop through all orders for the logged in user -->
+    <% orders.forEach(order => { %>
+      <div class="order-card">
+
+        <!-- Clicking the order ID takes user to the full order details -->
+        <div class="order-id">
+          <a href="/order/<%= order.id %>"><p><%= order.id %></p></a>
+        </div>
+
+        <div class="order-status">
+          <!-- Status badge color changes based on order status -->
+          <p class="status-badge" style="background-color: <%= order.status === 'processing' ? '#fff3cd' : order.status === 'delivered' ? '#d4edda' : '#cce5ff' %>">
+            <%= order.status %>
+          </p>
+        </div>
+
+      </div>
+    <% }) %>
+
+  </div>
+
+  <%- include('partials/footer') %>
+
 </body>
 </html>

@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <div class="logo">
+    <a href="/">Store</a>
+  </div>
+  <div class="nav-links">
+    <% if (user) { %>
+      <a href="/cart">Cart</a>
+      <a href="/orders">Orders</a>
+      <!-- Logout uses POST to destroy the session server-side -->
+      <form action="/logout" method="POST">
+        <button type="submit" class="logout-btn">Logout</button>
+      </form>
+    <% } else { %>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    <% } %>
+  </div>
+</nav>

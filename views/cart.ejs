@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cart</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <% cart.forEach(CartItem => { %>
-    <p><%= CartItem.name %></p>
-    <p><%= CartItem.price %></p>
-    <p><%= CartItem.quantity %></p>
-    <% }) %>
-    <p>Total: $<%= total %></p>
-    <form action="/checkout" method="POST">
-  <button type="submit">Checkout</button>
-</form>
+
+  <%- include('partials/navbar') %>
+
+  <div class="container">
+    <div class="cart-container">
+
+      <!-- Loop through each item stored in the session cart -->
+      <% cart.forEach(item => { %>
+        <div class="cart-item">
+          <p><%= item.name %></p>
+          <p>Qty: <%= item.quantity %></p>
+          <p>$<%= item.price %></p>
+        </div>
+      <% }) %>
+
+      <p class="subtotal">Total: $<%= total %></p>
+
+      <!-- Checkout submits a POST request to create the order -->
+      <form action="/checkout" method="POST">
+        <button type="submit" class="cart-btn">Checkout</button>
+      </form>
+
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
 </body>
 </html>

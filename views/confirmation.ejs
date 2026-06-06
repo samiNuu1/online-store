@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>order confirmation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <h2>Order #<%= order.id %></h2>
-    <p>Status: <%= order.status %></p>
-    <p>Date: <%= order.created_at %></p>
+  <%- include('partials/navbar') %>
 
-        <table>
-      <tr>
-        <th>Name</th>
-        <th>Quantity</th>
-        <th>Price</th>
-      </tr>
-      <% orderItems.forEach(item => { %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.quantity %></td>
-        <td><%= item.price %></td>
-      </tr>
-      <% }) %>
-    </table>
+  <div class="container">
+    <div class="confirmation-container">
+
+      <h3>Order Confirmed</h3>
+      <h2>Order #<%= order.id %></h2>
+      <p>Status: <%= order.status %></p>
+      <p>Date: <%= order.created_at %></p>
+
+      <!-- Table showing each item in the order -->
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+        <% orderItems.forEach(item => { %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.quantity %></td>
+            <td>$<%= item.price %></td>
+          </tr>
+        <% }) %>
+      </table>
+
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
 </body>
 </html>
